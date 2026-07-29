@@ -126,3 +126,312 @@ Debe preparar correctamente los campos:
 
 
 El campo Multiple Choice debe continuar funcionando con el script actual.
+---
+
+# 6. Arquitectura modular del complemento
+
+
+El proyecto debe estar organizado por módulos independientes.
+
+
+Estructura esperada:
+
+
+MedicalCardFormatterPro/
+
+├── __init__.py
+
+├── config.py
+
+├── formatter.py
+
+├── html_cleaner.py
+
+├── smart_paste.py
+
+├── table_editor.py
+
+├── backup.py
+
+├── audit.py
+
+├── gui.py
+
+├── utils.py
+
+└── logger.py
+
+
+
+---
+
+# 7. Responsabilidad de cada módulo
+
+
+## __init__.py
+
+Punto de entrada del add-on.
+
+Responsable de:
+
+- iniciar el complemento.
+- registrar hooks.
+- cargar configuración.
+- inicializar componentes.
+
+
+
+## config.py
+
+Responsable de:
+
+- preferencias del usuario.
+- opciones activadas/desactivadas.
+- almacenamiento mediante addonManager.
+
+
+
+## formatter.py
+
+Responsable de:
+
+- formato automático de campos.
+- alineación.
+- listas HTML.
+- organización visual.
+
+
+
+Campos principales:
+
+- Question.
+- Multiple Choice.
+- Correct Answer.
+- Extra.
+
+
+
+## html_cleaner.py
+
+Responsable de limpiar HTML innecesario.
+
+
+Debe eliminar:
+
+- estilos basura de Word.
+- estilos basura de PDF.
+- spans innecesarios.
+- fuentes incrustadas.
+- tamaños forzados.
+
+
+Debe conservar:
+
+- imágenes.
+- tablas.
+- MathJax.
+- LaTeX.
+- enlaces.
+- negritas.
+
+
+
+## smart_paste.py
+
+Responsable de analizar texto pegado.
+
+
+Debe detectar:
+
+- preguntas.
+- opciones.
+- respuestas.
+- explicaciones.
+
+
+Debe separar automáticamente:
+
+Question
+
+Multiple Choice
+
+Correct Answer
+
+Extra
+
+
+Antes de aplicar cambios debe mostrar una vista previa.
+
+
+
+## table_editor.py
+
+Responsable de:
+
+- insertar tablas.
+- editar tablas.
+- agregar filas.
+- eliminar filas.
+- agregar columnas.
+- eliminar columnas.
+- combinar celdas.
+
+
+
+## backup.py
+
+Responsable de:
+
+- crear copias antes de modificar.
+- restaurar versiones anteriores.
+
+
+
+## audit.py
+
+Responsable de registrar:
+
+
+Ejemplo:
+
+
+✓ Question centrado
+
+✓ Extra justificado
+
+✓ Opciones convertidas a lista
+
+✓ No se modificó contenido médico
+
+
+
+## gui.py
+
+Responsable de:
+
+- menús.
+- botones.
+- ventanas.
+- herramientas del editor.
+
+
+
+## utils.py
+
+Funciones auxiliares generales.
+
+
+
+## logger.py
+
+Registro de:
+
+- errores.
+- advertencias.
+- acciones realizadas.
+
+
+
+---
+
+# 8. Flujo de trabajo
+
+
+Usuario edita una tarjeta.
+
+↓
+
+Medical Card Formatter analiza estructura.
+
+↓
+
+Detecta posibles mejoras de formato.
+
+↓
+
+Muestra vista previa.
+
+↓
+
+Usuario acepta.
+
+↓
+
+Aplica cambios.
+
+↓
+
+Guarda auditoría.
+
+
+
+---
+
+# 9. Sistema de seguridad
+
+
+Antes de cambios importantes:
+
+
+Crear copia temporal.
+
+
+Toda modificación debe ser reversible.
+
+
+
+---
+
+# 10. Desarrollo por versiones
+
+
+## v0.1.0
+
+Base del complemento.
+
+- Menú dentro de Anki.
+- Configuración inicial.
+- Primer formateador.
+
+
+## v0.2.0
+
+Smart Paste.
+
+- Detección de estructura.
+- Separación de campos.
+
+
+## v0.3.0
+
+Editor de tablas.
+
+- Inserción.
+- Edición.
+- Conversión texto-tabla.
+
+
+## v0.4.0
+
+Herramientas avanzadas.
+
+- Auditoría.
+- Backup.
+- Procesamiento múltiple.
+
+
+
+---
+
+# 11. Objetivo final
+
+
+Crear un complemento profesional para Anki que permita crear tarjetas médicas más rápido, manteniendo siempre:
+
+- exactitud del contenido.
+- seguridad.
+- compatibilidad.
+- facilidad de uso.
+
+
+Medical Card Formatter Pro debe mejorar Anki, nunca reemplazarlo.
